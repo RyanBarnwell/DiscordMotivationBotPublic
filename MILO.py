@@ -1,7 +1,22 @@
 import discord
 import random
 from discord.ext import commands
+from flask import Flask
+import threading
 
+# Create Flask app(Used to have an HTTP server)
+app = Flask(__name__)
+
+#HTTP server routing for Render to utilize free hosting
+@app.route("/")
+def home():
+    return "Bot is running!"
+
+# Run Flask in a separate thread
+def run_server():
+    app.run(host="0.0.0.0", port=8080)
+    
+    
 #enable intents
 intents = discord.Intents.default()
 #enable message content intent
